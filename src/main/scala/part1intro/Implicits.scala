@@ -1,4 +1,4 @@
-package part1recap
+package part1intro
 
 object Implicits {
 
