@@ -80,7 +80,7 @@ object Monads {
 
   // extension methods - weirder imports - pure, flatMap
   import cats.syntax.applicative._ // pure is here
-  val oneOption = 1.pure[Option] // implicit Monad[Option] will be use => Some(1)
+  val oneOption = 1.pure[Option] // implicit Monad[Option] will be used => Some(1)
   val oneList = 1.pure[List] // List(1)
 
   import cats.syntax.flatMap._ // flatMap is here
