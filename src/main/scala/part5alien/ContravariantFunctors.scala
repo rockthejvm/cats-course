@@ -66,6 +66,7 @@ object ContravariantFunctors {
     println(format(42))
     println(format(true))
     println(format(Option(42)))
+    import cats.instances.option._
     println(format(Option(Option(42))))
   }
 }
