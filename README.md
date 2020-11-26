@@ -2,12 +2,11 @@
 
 Powered by [Rock the JVM!](rockthejvm.com)
 
-This repository contains the code we wrote during [Rock the JVM's Cats](https://rockthejvm.com/course/cats) course. Unless explicitly mentioned, the code in this repository is exactly what was caught on camera.
+This repository contains the code we wrote during [Rock the JVM's Cats course](https://rockthejvm.com/course/cats). Unless explicitly mentioned, the code in this repository is exactly what was caught on camera.
 
 ### Install and setup
 
 - install [IntelliJ IDEA](https://jetbrains.com/idea)
-- install [Docker Desktop](https://docker.com)
 - either clone the repo or download as zip
 - open with IntelliJ as an SBT project
 
