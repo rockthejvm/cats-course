@@ -7,7 +7,6 @@ This repository contains the code we wrote during [Rock the JVM's Cats](https://
 ### Install and setup
 
 - install [IntelliJ IDEA](https://jetbrains.com/idea)
-- install [Docker Desktop](https://docker.com)
 - either clone the repo or download as zip
 - open with IntelliJ as an SBT project
 
