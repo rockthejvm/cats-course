@@ -74,30 +74,42 @@ object CustomMonads {
         B1234
 
        */
-      def tailRec(todo: List[Tree[Either[A, B]]], expanded: Set[Tree[Either[A, B]]], done: List[Tree[B]]): Tree[B] =
+      @tailrec
+      def tailRec(todo: List[Tree[Either[A, B]]], expanded: List[Tree[Either[A, B]]], done: List[Tree[B]]): Tree[B] =
         if (todo.isEmpty) done.head
         else todo.head match {
           case Leaf(Left(v)) => tailRec(f(v) :: todo.tail, expanded, done)
           case Leaf(Right(b)) => tailRec(todo.tail, expanded, Leaf(b) :: done)
           case node @ Branch(left, right) =>
-            if (!expanded.contains(node)) {
-              tailRec(right :: left :: todo, expanded + node, done)
+            if (expanded.isEmpty || node != expanded.head) {
+              tailRec(right :: left :: todo, node :: expanded, done)
             } else {
               val newLeft = done.head
               val newRight = done.tail.head
               val newBranch = Branch(newLeft, newRight)
-              tailRec(todo.tail, expanded, newBranch :: done.drop(2))
+              tailRec(todo.tail, expanded.tail, newBranch :: done.drop(2))
             }
         }
 
-      tailRec(List(f(a)), Set(), List())
+      tailRec(List(f(a)), List(), List())
     }
   }
 
   def main(args: Array[String]): Unit = {
-    val tree: Tree[Int] = Branch(Leaf(10), Leaf(20))
-    val changedTree = TreeMonad.flatMap(tree)(v => Branch(Leaf(v + 1), Leaf(v + 2)))
-    println(changedTree)
 
+    val example: Tree[Either[Int,String]] =
+      Branch(
+        Branch(
+          Leaf(Left(1)),
+          Leaf(Left(2))),
+        Branch(
+          Leaf(Left(1)),
+          Leaf(Left(2))),
+      )
+    def fun(x: Int): Tree[Either[Int, String]] =
+      if (x == 0) example
+      else Leaf(Right((x * 10).toString))
+
+    print(Monad[Tree].tailRecM(0)(fun))
   }
 }
